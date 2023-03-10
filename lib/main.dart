@@ -1,8 +1,10 @@
+import 'package:five_media/authModule/ui/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:five_media/authModule/ui/landing_page.dart';
+import 'package:five_media/appModule/ui/app_bar.dart';
 
 void main() {
-  runApp(const OnboardPageClass());
+  runApp(const AppLayoutClass());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,6 +12,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return const MaterialApp();
   }
 }

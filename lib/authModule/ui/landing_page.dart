@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'login_page.dart';
 
 class ContentBoard {
   final String image, title, desc;
@@ -11,34 +12,6 @@ class ContentBoard {
     required this.desc,
   });
 }
-
-final List<ContentBoard> content_board = [
-  ContentBoard(image: "images/web developer.png", title: "Welcome to Five Universe", desc: "Be Yourself In This Universe"),
-];
-
-
-class ManiOnboardClass extends StatefulWidget {
-  const ManiOnboardClass({super.key});
-
-  @override
-  State<ManiOnboardClass> createState() => _ManiOnboardClassState();
-}
-
-class _ManiOnboardClassState extends State<ManiOnboardClass> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      builder: (context, child) => ResponsiveWrapper.builder(
-        child,
-        maxWidth: 1200,
-        minWidth: 480,
-        defaultScale: true,
-        breakpoints: const [
-          ResponsiveBreakpoint.resize(480, name: MOBILE),
-          ResponsiveBreakpoint.autoScale(800, name: TABLET),
-          ResponsiveBreakpoint.resize(1200, name: DESKTOP)
-        ],
-      ),
 
 final List<ContentBoard> contentBoard = [
   ContentBoard(
@@ -130,9 +103,9 @@ class _OnboardPageClassState extends State<OnboardPageClass> {
           minWidth: 480,
           defaultScale: true,
           breakpoints: [
-            ResponsiveBreakpoint.resize(480, name: MOBILE),
-            ResponsiveBreakpoint.autoScale(800, name: TABLET),
-            ResponsiveBreakpoint.resize(1200, name: DESKTOP)
+            const ResponsiveBreakpoint.resize(480, name: MOBILE),
+            const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+            const ResponsiveBreakpoint.resize(1200, name: DESKTOP)
           ]),
       home: Scaffold(
         body: Center(
@@ -149,10 +122,23 @@ class _OnboardPageClassState extends State<OnboardPageClass> {
                         desc: contentBoard[index].desc),
                   ),
                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      runApp(const LoginPageClass());
+                    });
+                  },
+                  child: const Text("Login"),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
                 SmoothPageIndicator(
                     controller: _pageController,
                     count: contentBoard.length,
                     effect: const SlideEffect(
+                        dotHeight: 7.5,
+                        dotWidth: 7.5,
                         dotColor: Color.fromARGB(15, 5, 5, 5),
                         activeDotColor: Colors.black)),
                 const SizedBox(
