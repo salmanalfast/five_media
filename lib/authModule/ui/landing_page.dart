@@ -73,6 +73,20 @@ class _OnboardWidgetClassState extends State<OnboardWidgetClass> {
   }
 }
 
+class LoginButton extends StatelessWidget {
+  const LoginButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => const LoginPageClass()));
+        },
+        child: const Text("Login"));
+  }
+}
+
 class OnboardPageClass extends StatefulWidget {
   const OnboardPageClass({super.key});
 
@@ -98,6 +112,7 @@ class _OnboardPageClassState extends State<OnboardPageClass> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveWrapper.builder(child,
           maxWidth: 1200,
           minWidth: 480,
@@ -109,43 +124,34 @@ class _OnboardPageClassState extends State<OnboardPageClass> {
           ]),
       home: Scaffold(
         body: Center(
-          child: SafeArea(
-            child: Column(
-              children: [
-                Expanded(
-                  child: PageView.builder(
-                    itemCount: contentBoard.length,
-                    controller: _pageController,
-                    itemBuilder: (context, index) => OnboardWidgetClass(
-                        image: contentBoard[index].image,
-                        title: contentBoard[index].title,
-                        desc: contentBoard[index].desc),
-                  ),
+          child: Column(
+            children: [
+              Expanded(
+                child: PageView.builder(
+                  itemCount: contentBoard.length,
+                  controller: _pageController,
+                  itemBuilder: (context, index) => OnboardWidgetClass(
+                      image: contentBoard[index].image,
+                      title: contentBoard[index].title,
+                      desc: contentBoard[index].desc),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      runApp(const LoginPageClass());
-                    });
-                  },
-                  child: const Text("Login"),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                SmoothPageIndicator(
-                    controller: _pageController,
-                    count: contentBoard.length,
-                    effect: const SlideEffect(
-                        dotHeight: 7.5,
-                        dotWidth: 7.5,
-                        dotColor: Color.fromARGB(15, 5, 5, 5),
-                        activeDotColor: Colors.black)),
-                const SizedBox(
-                  height: 25,
-                )
-              ],
-            ),
+              ),
+              const LoginButton(),
+              const SizedBox(
+                height: 50,
+              ),
+              SmoothPageIndicator(
+                  controller: _pageController,
+                  count: contentBoard.length,
+                  effect: const SlideEffect(
+                      dotHeight: 7.5,
+                      dotWidth: 7.5,
+                      dotColor: Color.fromARGB(15, 5, 5, 5),
+                      activeDotColor: Colors.black)),
+              const SizedBox(
+                height: 25,
+              )
+            ],
           ),
         ),
       ),

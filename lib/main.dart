@@ -4,7 +4,7 @@ import 'package:five_media/authModule/ui/landing_page.dart';
 import 'package:five_media/appModule/ui/app_bar.dart';
 
 void main() {
-  runApp(const AppLayoutClass());
+  runApp(const OnboardPageClass());
 }
 
 class MyApp extends StatelessWidget {
