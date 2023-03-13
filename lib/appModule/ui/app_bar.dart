@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'crud_page.dart';
 
 //Navigation Bottom Bar
 class NavBottomBarClass extends StatefulWidget {
@@ -13,7 +15,7 @@ class NavBottomBarClass extends StatefulWidget {
 class _NavBottomBarClassState extends State<NavBottomBarClass> {
   int currentPage = 0;
   static final List<Widget>  _selector = <Widget>[
-    const Text("Home Page"),
+    const CrudFormClass(),
     const Text("Explore Page"),
     const Text("Market Page"),
     const Text("Settings Page"),
