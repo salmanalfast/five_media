@@ -1,15 +1,15 @@
-part of 'counter_bloc.dart';
+part of 'car_bloc.dart';
 
-abstract class CounterEvent extends Equatable {
-  const CounterEvent();
+abstract class CarEvent extends Equatable {
+  const CarEvent();
 
   @override
   List<Object> get props => [];
-} 
+}
 
-class LoadCarCounter extends CounterEvent{}
+class LoadCarCounter extends CarEvent {}
 
-class AddCar extends CounterEvent{
+class AddCar extends CarEvent {
   final Car car;
 
   const AddCar(this.car);
@@ -18,9 +18,9 @@ class AddCar extends CounterEvent{
   List<Object> get props => [car];
 }
 
-class RemoveCar extends CounterEvent{
+class RemoveCar extends CarEvent{
   final Car car;
-  
+
   const RemoveCar(this.car);
 
   @override

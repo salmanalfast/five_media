@@ -36,24 +36,31 @@ class _CrudFormClassState extends State<CrudFormClass> {
             Form(
               child: Column(
                 children: <Widget>[
-                  TextFormField(
-                    decoration: const InputDecoration(hintText: "Enter Name"),
-                    validator: (name) {
-                      if (name == null || name.isEmpty) {
-                        return "Please Input Your Name";
-                      }
-                      return null;
-                    },
+                  SizedBox(
+                    width: 200,height: 50,
+                    child: TextFormField(
+                      decoration: const InputDecoration(hintText: "Enter Name"),
+                      validator: (name) {
+                        if (name == null || name.isEmpty) {
+                          return "Please Input Your Name";
+                        }
+                        return null;
+                      },
+                    ),
                   ),
-                  TextFormField(
-                    decoration: const InputDecoration(hintText: "Enter Job"),
-                    validator: (job) {
-                      if (job == null || job.isEmpty) {
-                        return "Please Input Your Job";
-                      }
-                      return null;
-                    },
+                  SizedBox(
+                    width: 200, height: 50,
+                    child: TextFormField(
+                      decoration: const InputDecoration(hintText: "Enter Job"),
+                      validator: (job) {
+                        if (job == null || job.isEmpty) {
+                          return "Please Input Your Job";
+                        }
+                        return null;
+                      },
+                    ),
                   ),
+                  const SizedBox(height: 5,),
                   ElevatedButton(
                       onPressed: () {
                         PostResult.createPostResult;
