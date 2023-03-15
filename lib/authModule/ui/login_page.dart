@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 final _form = GlobalKey<FormState>();
 
@@ -41,7 +40,7 @@ class _LoginPageClassState extends State<LoginPageClass> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   const Text("Password"),
@@ -57,7 +56,7 @@ class _LoginPageClassState extends State<LoginPageClass> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
@@ -75,7 +74,7 @@ class _LoginPageClassState extends State<LoginPageClass> {
                 ],
               ),
             ),
-            Spacer()
+            const Spacer()
           ],
         ),
       ),

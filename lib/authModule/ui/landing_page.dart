@@ -1,5 +1,7 @@
 import 'package:five_media/appModule/ui/app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../cubitState/counter_cubit.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'login_page.dart';
@@ -79,9 +81,13 @@ class HomeButtonClass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(onPressed: (){
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AppLayoutClass(),));
-    }, child: const Text("home"));
+    return TextButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const AppLayoutClass(),
+          ));
+        },
+        child: const Text("home"));
   }
 }
 
@@ -123,48 +129,51 @@ class _OnboardPageClassState extends State<OnboardPageClass> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      builder: (context, child) => ResponsiveWrapper.builder(child,
-          maxWidth: 1200,
-          minWidth: 480,
-          defaultScale: true,
-          breakpoints: [
-            const ResponsiveBreakpoint.resize(480, name: MOBILE),
-            const ResponsiveBreakpoint.autoScale(800, name: TABLET),
-            const ResponsiveBreakpoint.resize(1200, name: DESKTOP)
-          ]),
-      home: Scaffold(
-        body: Center(
-          child: Column(
-            children: [
-              Expanded(
-                child: PageView.builder(
-                  itemCount: contentBoard.length,
-                  controller: _pageController,
-                  itemBuilder: (context, index) => OnboardWidgetClass(
-                      image: contentBoard[index].image,
-                      title: contentBoard[index].title,
-                      desc: contentBoard[index].desc),
+    return BlocProvider(
+      create: (context) => Counter(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        builder: (context, child) => ResponsiveWrapper.builder(child,
+            maxWidth: 1200,
+            minWidth: 480,
+            defaultScale: true,
+            breakpoints: [
+              const ResponsiveBreakpoint.resize(480, name: MOBILE),
+              const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+              const ResponsiveBreakpoint.resize(1200, name: DESKTOP)
+            ]),
+        home: Scaffold(
+          body: Center(
+            child: Column(
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                    itemCount: contentBoard.length,
+                    controller: _pageController,
+                    itemBuilder: (context, index) => OnboardWidgetClass(
+                        image: contentBoard[index].image,
+                        title: contentBoard[index].title,
+                        desc: contentBoard[index].desc),
+                  ),
                 ),
-              ),
-              const LoginButton(),
-              const HomeButtonClass(),
-              const SizedBox(
-                height: 50,
-              ),
-              SmoothPageIndicator(
-                  controller: _pageController,
-                  count: contentBoard.length,
-                  effect: const SlideEffect(
-                      dotHeight: 7.5,
-                      dotWidth: 7.5,
-                      dotColor: Color.fromARGB(15, 5, 5, 5),
-                      activeDotColor: Colors.black)),
-              const SizedBox(
-                height: 25,
-              ),
-            ],
+                const LoginButton(),
+                const HomeButtonClass(),
+                const SizedBox(
+                  height: 50,
+                ),
+                SmoothPageIndicator(
+                    controller: _pageController,
+                    count: contentBoard.length,
+                    effect: const SlideEffect(
+                        dotHeight: 7.5,
+                        dotWidth: 7.5,
+                        dotColor: Color.fromARGB(15, 5, 5, 5),
+                        activeDotColor: Colors.black)),
+                const SizedBox(
+                  height: 25,
+                ),
+              ],
+            ),
           ),
         ),
       ),
